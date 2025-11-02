@@ -1,0 +1,30 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="TextBlockStyle.xaml" />
+        <ResourceDictionary Source="GroupBoxStyle.xaml" />
+		<ResourceDictionary Source="ButtonStyle.xaml" />
+		<ResourceDictionary Source="ListBoxStyle.xaml" />
+		<ResourceDictionary Source="ExpandCollapseToggleStyle.xaml" />
+		<ResourceDictionary Source="WindowStyle.xaml" />
+        <ResourceDictionary Source="TextBoxStyle.xaml" />
+        <ResourceDictionary Source="ScrollBarStyle.xaml" />
+        <ResourceDictionary Source="ComboBoxStyle.xaml" />
+
+        <ResourceDictionary Source="Colors.xaml" />
+		
+		<ResourceDictionary Source="../Icons/Warning.xaml" />
+		<ResourceDictionary Source="../Icons/Help.xaml" />
+		<ResourceDictionary Source="../Icons/TreeListExpander.xaml" />
+		<ResourceDictionary Source="../Icons/Add.xaml" />
+		<ResourceDictionary Source="../Icons/AddSub.xaml" />
+		<ResourceDictionary Source="../Icons/DeleteItem.xaml" />
+		<ResourceDictionary Source="../Icons/Up.xaml" />
+		<ResourceDictionary Source="../Icons/Down.xaml" />
+        <ResourceDictionary Source="../Icons/StartEndIcon.xaml" />
+        <ResourceDictionary Source="../Icons/DeviceDeviceIcon.xaml" />
+        <ResourceDictionary Source="../Icons/Pointer.xaml" />
+        <ResourceDictionary Source="../Icons/Substract.xaml" />
+	    <ResourceDictionary Source="../Icons/Settings.xaml" />
+	</ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

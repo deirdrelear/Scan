@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<DrawingBrush x:Key="StartEndIcon" Stretch="Uniform">
+		<DrawingBrush.Drawing>
+			<DrawingGroup>
+				<DrawingGroup.Children>
+                    <GeometryDrawing Brush="{DynamicResource UiElementForeground}" Geometry="F1 M 5,8L 5,2L 2,2L 2,17L 5,17L 5,11L 8,11L 8,17L 11,17L 11,2L 8,2L 8,8L 5,8 Z M 14,2L 14,17L 17,17L 17,11L 20,17L 23,17L 20,11L 20,8L 23,2L 20,2L 17,8L 17,2L 14,2 Z"/>
+				</DrawingGroup.Children>
+			</DrawingGroup>
+		</DrawingBrush.Drawing>
+	</DrawingBrush>
+</ResourceDictionary>

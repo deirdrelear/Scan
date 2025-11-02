@@ -1,0 +1,334 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<Style x:Key="DefaultButton" TargetType="{x:Type Button}">
+		<Setter Property="OverridesDefaultStyle" Value="True" />
+		<Setter Property="BorderThickness" Value="1"/>
+		<Setter Property="Foreground" Value="Black"/>
+		<Setter Property="HorizontalContentAlignment" Value="Center"/>
+		<Setter Property="VerticalContentAlignment" Value="Center"/>
+		<Setter Property="Padding" Value="10 4"/>
+		<Setter Property="Margin" Value="10 3" />
+		<Setter Property="Background" Value="#F0F0F0" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+                        <Border x:Name="Chrome" CornerRadius="3" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true" BorderBrush="#ACACAC" Background="{TemplateBinding Background}">
+							<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+						</Border>
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsEnabled" Value="false">
+							<Setter Property="Foreground" Value="#ADADAD"/>
+						</Trigger>
+
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Background" Value="#FFFCFCFC" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+
+
+    <Style x:Key="ReturnButton" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#FF323239" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <Rectangle Height="26" Width="34" Fill="{TemplateBinding Property=Background}" />
+                        <Canvas Width="14" Height="14" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+                            <Path Width="14" Height="14" Data="F1M646.688,13.5518L646.783,13.4593 646.965,13.639 668.383,35.0583 689.459,35.0583 665.155,10.751 657.503,3.10126 657.323,2.92023 664.876,-4.63837 689.184,-28.9417 668.109,-28.9417 646.688,-7.52637 636.15,3.01398 646.688,13.5518z" Stretch="Uniform" Fill="#FFFFFFFF" RenderTransformOrigin="0.5,0.5" />
+                        </Canvas>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF474754" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+
+    <Style x:Key="PinButtonPinned" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#FF323239" />
+        <Setter Property="ToolTip" Value="Открепить окно"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <Rectangle Height="26" Width="34" Fill="{TemplateBinding Property=Background}" />
+                        <Canvas Width="17" Height="14" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+                            <Path Width="17" Height="17" Stretch="Fill" Fill="#FFF0F4E5" Data="F1 M 30,38L 46,38L 41,40L 44,53L 56,56L 41,56L 38,66L 35,56L 20,56L 32,53L 35,40L 30,38 Z "/>
+                        </Canvas>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF474754" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+
+    <Style x:Key="PinButtonNotPinned" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#FFF0F4E5" />
+        <Setter Property="ToolTip" Value="Закрепить окно поверх остальных окон"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <Rectangle Height="26" Width="34" Fill="{TemplateBinding Property=Background}" />
+                        <Canvas Width="17" Height="14" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+                            <Path Width="17" Height="17" Stretch="Fill" Fill="#FF323239" Data="F1 M 30,38L 46,38L 41,40L 44,53L 56,56L 41,56L 38,66L 35,56L 20,56L 32,53L 35,40L 30,38 Z "/>
+                        </Canvas>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFDCDCDC" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+
+    <Style x:Key="CloseButton" TargetType="{x:Type Button}">
+        <Style.Resources>
+            <Brush x:Key="ImageColor">#FFF0F4E5</Brush>
+            <Brush x:Key="BgColor">#FF323239</Brush>
+        </Style.Resources>
+        <Setter Property="Background" Value="{DynamicResource BgColor}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <Rectangle Height="26" Width="34" Fill="{TemplateBinding Property=Background}" />
+                        <Canvas Width="14" Height="14" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+                            <Path Width="14" Height="14" Stretch="Fill" Fill="{DynamicResource ImageColor}" Data="F1 M 26.9166,22.1667L 37.9999,33.25L 49.0832,22.1668L 53.8332,26.9168L 42.7499,38L 53.8332,49.0834L 49.0833,53.8334L 37.9999,42.75L 26.9166,53.8334L 22.1666,49.0833L 33.25,38L 22.1667,26.9167L 26.9166,22.1667 Z "/>
+                        </Canvas>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF474754" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+
+    <Style x:Key="CloseButtonGrey" TargetType="{x:Type Button}" BasedOn="{StaticResource CloseButton}">
+        <Style.Resources>
+            <Brush x:Key="ImageColor">#FF323239</Brush>
+            <Brush x:Key="BgColor">#a3a3a1</Brush>
+        </Style.Resources>
+    </Style>
+
+    <Style x:Key="MinimizeButton" TargetType="{x:Type Button}">
+        <Style.Resources>
+            <Brush x:Key="ImageColor">#FFF0F4E5</Brush>
+            <Brush x:Key="BgColor">#FF323239</Brush>
+        </Style.Resources>
+        <Setter Property="Background" Value="{DynamicResource BgColor}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <Rectangle Height="26" Width="34" Fill="{TemplateBinding Property=Background}" />
+                        <Canvas Width="14" Height="12" VerticalAlignment="Bottom" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+                            <Path Width="14" Height="4" Stretch="Fill" Fill="{DynamicResource ImageColor}" Data="F1 M 19,38L 57,38L 57,44L 19,44L 19,38 Z "/>
+                        </Canvas>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF474754" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+
+
+
+    <Style x:Key="MinimizeButtonGrey" TargetType="{x:Type Button}" BasedOn="{StaticResource MinimizeButton}">
+        <Style.Resources>
+            <Brush x:Key="ImageColor">#FF323239</Brush>
+            <Brush x:Key="BgColor">#a3a3a1</Brush>
+        </Style.Resources>
+    </Style>
+
+    <Style x:Key="MaximizeButton" TargetType="{x:Type Button}">
+        <Style.Resources>
+            <Brush x:Key="ImageColor">#FFF0F4E5</Brush>
+            <Brush x:Key="BgColor">#FF323239</Brush>
+        </Style.Resources>
+        <Setter Property="Background" Value="{DynamicResource BgColor}" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<Grid>
+						<Rectangle Height="26" Width="34" Fill="{TemplateBinding Property=Background}" />
+						<Canvas x:Name="appbar_window_maximize" Width="14" Height="14" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+                            <Path Width="14" Height="14" Stretch="Fill" Fill="{DynamicResource ImageColor}" Data="F1 M 43,48L 46,48L 46,57L 19,57L 19,34L 32,34L 32,40L 22,40L 22,54L 43,54L 43,48 Z M 21,19L 57,19L 57,50L 49,50L 49,46L 53,46L 53,27L 25,27L 25,32L 21,32L 21,19 Z M 37.75,30L 50,30L 50,42.25L 46,46.25L 46,37.25L 38,45.25L 34.75,42L 42.75,34L 33.75,34L 37.75,30 Z "/>
+						</Canvas>
+						<!--<Canvas x:Name="appbar_window_restore" Width="76" Height="76" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+							<Path Width="38" Height="38" Canvas.Left="19" Canvas.Top="19" Stretch="Fill" Fill="#FFF0F4E5" Data="F1 M 54,54L 54,40L 33,40L 33,54L 54,54 Z M 57,34L 57,57L 30,57L 30,34L 57,34 Z M 43,25L 22,25L 22,39L 27,39L 27,42L 19,42L 19,19L 46,19L 46,31L 43,31L 43,25 Z "/>
+						</Canvas>-->
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Background" Value="#FF474754" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="Cursor" Value="Hand" />
+	</Style>
+
+    <Style x:Key="MaximizeButtonGrey" TargetType="{x:Type Button}" BasedOn="{StaticResource MaximizeButton}">
+        <Style.Resources>
+            <Brush x:Key="ImageColor">#FF323239</Brush>
+            <Brush x:Key="BgColor">#a3a3a1</Brush>
+        </Style.Resources>
+    </Style>
+
+    <Style x:Key="SettingsButton" TargetType="{x:Type Button}">
+		<Setter Property="Background" Value="#FF323239" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<Grid>
+						<Rectangle Height="26" Width="34" Fill="{TemplateBinding Property=Background}" />
+						<Canvas Width="14" Height="14" VerticalAlignment="Center" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+							<Path Width="14" Height="14" Stretch="Fill" Fill="#FFF0F4E5" Data="F1 M 38,23.5C 38.8643,23.5 39.7109,23.5756 40.5337,23.7206L 42.6275,18.5381L 48.1901,20.787L 46.0964,25.9692C 47.6473,27.0149 48.9851,28.3527 50.0308,29.9036L 55.213,27.8099L 57.4619,33.3725L 52.2794,35.4664C 52.4244,36.2891 52.5,37.1357 52.5,38C 52.5,38.8643 52.4244,39.7109 52.2794,40.5337L 57.4619,42.6275L 55.213,48.1901L 50.0308,46.0964C 49.0795,47.5073 47.8865,48.7418 46.5112,49.7405L 48.7844,54.8462L 43.3041,57.2891L 41.0307,52.1828C 40.0533,52.3906 39.0394,52.5 38,52.5C 37.1357,52.5 36.2891,52.4244 35.4664,52.2794L 33.3725,57.462L 27.8099,55.213L 29.9036,50.0309C 28.3527,48.9851 27.0149,47.6473 25.9691,46.0964L 20.787,48.1901L 18.538,42.6275L 23.7206,40.5336C 23.5756,39.7109 23.5,38.8643 23.5,38C 23.5,37.1357 23.5756,36.2891 23.7206,35.4664L 18.538,33.3725L 20.787,27.8099L 25.9691,29.9036C 26.9205,28.4927 28.1135,27.2582 29.4889,26.2594L 27.2157,21.1537L 32.6959,18.7109L 34.9694,23.8172C 35.9468,23.6094 36.9606,23.5 38,23.5 Z M 38,28C 32.4771,28 28,32.4772 28,38C 28,43.5229 32.4771,48 38,48C 43.5228,48 48,43.5229 48,38C 48,32.4772 43.5228,28 38,28 Z "/>
+						</Canvas>
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Background" Value="#FF474754" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="Cursor" Value="Hand" />
+	</Style>
+
+	<Style x:Key="ToolBarButton" TargetType="{x:Type Button}">
+		<Setter Property="Height" Value="40" />
+		<Setter Property="Width" Value="40" />
+		<Setter Property="VerticalAlignment" Value="Center" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<Border Name="border" 
+							Margin="2"
+							BorderBrush="Transparent" 
+							BorderThickness="1" 
+							CornerRadius="1" 
+							Padding="2" 
+							ToolTip="{TemplateBinding ToolTip}" 
+							ToolTipService.ShowOnDisabled="True">
+						<Rectangle Name="Image" Fill="{TemplateBinding Background}" />
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="UIElement.IsMouseOver" Value="True">
+							<Setter TargetName="border" Property="Border.BorderBrush" Value="{DynamicResource UiElementBackgroundHighlight}" />
+							<Setter TargetName="border" Property="Border.Background" Value="{DynamicResource UiElementBackgroundHighlight}" />
+						</Trigger>
+						<Trigger Property="Button.IsPressed" Value="True">
+							<Setter TargetName="border" Property="Border.Background" Value="{DynamicResource UiElementBackgroundHighlightAlt}" />
+						</Trigger>
+						<Trigger Property="Button.IsEnabled" Value="False">
+							<Setter TargetName="border" Property="Opacity" Value="0.5" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+    <!--<Style x:Key="UgoMinimizeButton" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#FFE6E6E6" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <Rectangle Height="26" Width="34" Fill="{TemplateBinding Property=Background}" />
+                        <Canvas Width="14" Height="12" VerticalAlignment="Bottom" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+                            <Path Width="14" Height="4" Stretch="Fill" Fill="#FF474754" Data="F1 M 19,38L 57,38L 57,44L 19,44L 19,38 Z "/>
+                        </Canvas>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFC8C8C8" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+
+    <Style x:Key="UgoMaximizeButton" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#FFE6E6E6" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <Rectangle Height="26" Width="34" Fill="{TemplateBinding Property=Background}" />
+                        <Canvas x:Name="appbar_window_maximize" Width="14" Height="14" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+                            <Path Width="14" Height="14" Stretch="Fill" Fill="#FF474754" Data="F1 M 43,48L 46,48L 46,57L 19,57L 19,34L 32,34L 32,40L 22,40L 22,54L 43,54L 43,48 Z M 21,19L 57,19L 57,50L 49,50L 49,46L 53,46L 53,27L 25,27L 25,32L 21,32L 21,19 Z M 37.75,30L 50,30L 50,42.25L 46,46.25L 46,37.25L 38,45.25L 34.75,42L 42.75,34L 33.75,34L 37.75,30 Z "/>
+                        </Canvas>
+                        --><!--<Canvas x:Name="appbar_window_restore" Width="76" Height="76" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+							<Path Width="38" Height="38" Canvas.Left="19" Canvas.Top="19" Stretch="Fill" Fill="#FFF0F4E5" Data="F1 M 54,54L 54,40L 33,40L 33,54L 54,54 Z M 57,34L 57,57L 30,57L 30,34L 57,34 Z M 43,25L 22,25L 22,39L 27,39L 27,42L 19,42L 19,19L 46,19L 46,31L 43,31L 43,25 Z "/>
+						</Canvas>--><!--
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFC8C8C8" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+
+    <Style x:Key="UgoCloseButton" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#FFE6E6E6" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <Rectangle Height="26" Width="34" Fill="{TemplateBinding Property=Background}" />
+                        <Canvas Width="14" Height="14" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+                            <Path Width="14" Height="14" Stretch="Fill" Fill="#FF474754" Data="F1 M 26.9166,22.1667L 37.9999,33.25L 49.0832,22.1668L 53.8332,26.9168L 42.7499,38L 53.8332,49.0834L 49.0833,53.8334L 37.9999,42.75L 26.9166,53.8334L 22.1666,49.0833L 33.25,38L 22.1667,26.9167L 26.9166,22.1667 Z "/>
+                        </Canvas>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFC8C8C8" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>-->
+
+</ResourceDictionary>

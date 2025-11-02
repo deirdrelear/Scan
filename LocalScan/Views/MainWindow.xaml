@@ -1,0 +1,98 @@
+﻿<Window x:Class="LocalScan.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:converters="clr-namespace:Common.WPF.Converters;assembly=Common"
+        xmlns:viewModels="clr-namespace:LocalScan.ViewModels"
+        xmlns:localScanView="clr-namespace:LocalScan.Views.LocalScanTab"
+        xmlns:localScanViewModels="clr-namespace:LocalScan.ViewModels.LocalScanTab"
+        xmlns:conv="clr-namespace:LocalScan.WPF.Converters"
+        d:DataContext="{d:DesignInstance Type=viewModels:MainWindowViewModel}"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        x:Name="Window"
+        WindowState="{Binding WindowState}"
+        Background="{StaticResource WindowBackground}"
+        WindowStyle="None"
+        ResizeMode="CanResizeWithGrip"
+        AllowsTransparency="True"
+        Icon="{StaticResource MainIcon}"
+        Loaded="Window_Loaded"
+        Title="Eve online Den's app" 
+        Height="800" Width="1280"
+        MinHeight="600" MinWidth="800"
+        BorderBrush="#FF494957"
+        BorderThickness="1">
+    <Window.DataContext>
+        <viewModels:MainWindowViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource WhiteNormalTextStyle}" x:Key="WhiteText">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="{x:Type ScrollBar}">
+            <Setter Property="Template" Value="{StaticResource VerticalScrollBar}"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="{StaticResource WindowBackground}" x:Name="Header">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="0" Margin="74,0,0,0">
+                <TextBlock Text="Eve online"  FontSize="18" Foreground="{StaticResource Green}"/>
+                <TextBlock Text=" Den's app"  FontSize="18" Foreground="{StaticResource Yellow}"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,5,0">
+                <Button Style="{StaticResource MinimizeButton}" Width="23" Height="23"
+                    Command="{Binding MinimizeCommand}" />
+                <Button Height="23" Width="23" Style="{StaticResource MaximizeButton}" 
+                        Command="{Binding MaximizeCommand}" CommandParameter="{Binding ElementName=Window}" />
+                <Button Style="{StaticResource CloseButton}" Width="23" Height="23" 
+                    Command="{Binding CloseCommand}"
+                    CommandParameter="{Binding ElementName=Window}" HorizontalAlignment="Right"/>
+            </StackPanel>
+        </Grid>
+
+        <TabControl x:Name="tabs" Grid.Row="1" ItemsSource="{Binding Tabs}" Background="{StaticResource WindowBackground}" BorderThickness="0">
+            <TabControl.Resources>
+                <!-- Сопоставление типа viewmodel с его view -->
+                <DataTemplate DataType="{x:Type localScanViewModels:MainViewModel}">
+                    <localScanView:MainView />
+                </DataTemplate>
+
+                <Style TargetType="{x:Type TabItem}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type TabItem}">
+                                <Border x:Name="Border" Background="{StaticResource WindowBackground}" Margin="1,0,1,0" BorderThickness="1" BorderBrush="#FF494957" CornerRadius="4">
+                                    <TextBlock Text="{Binding Header}" Style="{StaticResource AltWhiteCaptionTextStyle}" FontSize="18" FontWeight="Bold" Margin="4,2,4,4"/>
+                                </Border>
+
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Panel.ZIndex" Value="100" />
+                                        <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource DarkGreen}"/>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="Border" Property="Background" Value="{StaticResource WindowBackgroundLight}"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+
+            </TabControl.Resources>
+        </TabControl>
+    </Grid>
+</Window>

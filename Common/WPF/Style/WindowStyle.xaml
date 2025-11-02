@@ -1,0 +1,138 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:shell="clr-namespace:Microsoft.Windows.Shell;assembly=Microsoft.Windows.Shell"
+					xmlns:controls="clr-namespace:Common.WPF.Controls">
+
+	<Style x:Key="MainWindowStyle" TargetType="{x:Type Window}">
+		<Setter Property="shell:WindowChrome.WindowChrome">
+			<Setter.Value>
+				<shell:WindowChrome
+                        ResizeBorderThickness="6"
+                        CaptionHeight="30"
+                        CornerRadius="0"
+                        GlassFrameThickness="0,0,0,1"/>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="Template" Value="{DynamicResource MainWindowControlTemplate}"/>
+		<Setter Property="SnapsToDevicePixels" Value="False" />
+		<Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality" />
+        <Setter Property="ShowInTaskbar" Value="True" />
+    </Style>
+
+    <Style x:Key="UgoWindowStyle" TargetType="{x:Type Window}">
+        <Setter Property="shell:WindowChrome.WindowChrome">
+            <Setter.Value>
+                <shell:WindowChrome
+                        ResizeBorderThickness="6"
+                        CaptionHeight="30"
+                        CornerRadius="0"
+                        GlassFrameThickness="0,0,0,1"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template" Value="{DynamicResource UgoWindowControlTemplate}"/>
+        <Setter Property="SnapsToDevicePixels" Value="False" />
+        <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality" />
+        <Setter Property="ShowInTaskbar" Value="True" />
+    </Style>
+
+    <Style x:Key="FixedSizeWindowStyle" TargetType="{x:Type Window}">
+		<Setter Property="shell:WindowChrome.WindowChrome">
+			<Setter.Value>
+				<shell:WindowChrome
+                        ResizeBorderThickness="0"
+                        CaptionHeight="30"
+                        CornerRadius="0"
+                        GlassFrameThickness="0,0,0,1"/>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="Template" Value="{DynamicResource FixedSizeWindowControlTemplate}"/>
+		<Setter Property="SnapsToDevicePixels" Value="False" />
+		<Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality" />
+		<Setter Property="ShowInTaskbar" Value="True" />
+	</Style>
+
+	<ControlTemplate x:Key="MainWindowControlTemplate" TargetType="{x:Type Window}">
+        <Border>
+            <Border.Style>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=Window, Path=WindowState}" Value="Maximized">
+                            <Setter Property="BorderThickness" Value="{Binding Source={x:Static shell:SystemParameters2.Current}, Path=WindowResizeBorderThickness}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Captions Buttons to control the window borderless-->
+                <Border Background="{DynamicResource WindowBorder}" Grid.Row="0" />
+                <TextBlock Padding="10" Style="{DynamicResource CurrentVersion}" Grid.Row="0" />
+                <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=Title}" VerticalAlignment="Center" />
+                <controls:CaptionButtons Margin="0,0,10,0" Grid.Row="0" HorizontalAlignment="Right" Type="Full"
+                                        Foreground="{DynamicResource CaptionButtonColor}" FontSize="14" MarginButton="0,0,5,0"
+                                        VerticalAlignment="Center" shell:WindowChrome.IsHitTestVisibleInChrome="True"/>
+                <Border Grid.Row="1" Background="{DynamicResource WindowBackground}">
+                    <ContentPresenter Content="{TemplateBinding Content}" />
+                </Border>
+            </Grid>
+        </Border>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="UgoWindowControlTemplate" TargetType="{x:Type Window}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Captions Buttons to control the window borderless-->
+            <Border Background="{DynamicResource WindowBorder}" Grid.Row="0" />
+            <TextBlock Padding="10" Style="{DynamicResource CurrentVersion}" Grid.Row="0" />
+            <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=Title}" VerticalAlignment="Center" />
+            <controls:CaptionButtons Margin="0,0,10,0" Grid.Row="0" HorizontalAlignment="Right" Type="Full"
+                                        Foreground="{DynamicResource CaptionButtonColor}" FontSize="14" MarginButton="0,0,5,0"
+                                        VerticalAlignment="Center" shell:WindowChrome.IsHitTestVisibleInChrome="True"/>
+            <Border Grid.Row="1" Background="{DynamicResource UgoWindowBackground}">
+                <ContentPresenter Content="{TemplateBinding Content}" />
+            </Border>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="FixedSizeWindowControlTemplate" TargetType="{x:Type Window}">
+        <Border>
+            <Border.Style>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=Window, Path=WindowState}" Value="Maximized">
+                            <Setter Property="BorderThickness" Value="{Binding Source={x:Static shell:SystemParameters2.Current}, Path=WindowResizeBorderThickness}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Captions Buttons to control the window borderless-->
+                <Border Background="{DynamicResource WindowBorder}" Grid.Row="0" />
+                <TextBlock Padding="10" Style="{DynamicResource CurrentVersion}" Grid.Row="0" />
+                <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=Title}" VerticalAlignment="Center" />
+                <controls:CaptionButtons Margin="0,0,10,0" Grid.Row="0" HorizontalAlignment="Right" Type="ReduceClose"
+                                        Foreground="{DynamicResource CaptionButtonColor}" FontSize="14" MarginButton="0,0,5,0"
+                                        VerticalAlignment="Center" shell:WindowChrome.IsHitTestVisibleInChrome="True" />
+                <Border Grid.Row="1" Background="{DynamicResource WindowBackground}">
+                    <ContentPresenter Content="{TemplateBinding Content}" />
+                </Border>
+            </Grid>
+        </Border>
+        
+	</ControlTemplate>
+</ResourceDictionary>

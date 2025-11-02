@@ -1,0 +1,29 @@
+﻿
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+      <Style x:Key="MyGbStyle" TargetType="GroupBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="GroupBox">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="0" BorderThickness="1"
+                                                      BorderBrush="#13a2e8"
+                                                      Background="#13a2e8">
+                                <Label Foreground="White">
+                                    <ContentPresenter Margin="0" ContentSource="Header" RecognizesAccessKey="True" />
+                                </Label>
+                            </Border>
+                            <Border Grid.Row="1" BorderThickness="1,0,1,1" BorderBrush="#13a2e8">
+                                <ContentPresenter Margin="4" />
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+</ResourceDictionary>

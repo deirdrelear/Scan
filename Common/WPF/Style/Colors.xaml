@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<SolidColorBrush Color="#2d2d30" x:Key="WindowBackground" />
+    <SolidColorBrush Color="#38383c" x:Key="WindowBackgroundLight" />
+    <SolidColorBrush Color="#c0c0c0" x:Key="UgoWindowBackground" />
+	<SolidColorBrush Color="#A2A2A0" x:Key="WindowBorder" />
+
+	<SolidColorBrush Color="#1585d0" x:Key="Text" />
+	<SolidColorBrush Color="#1585d0" x:Key="AltText" />
+	<SolidColorBrush Color="#000000" x:Key="GridText" />
+	<SolidColorBrush Color="#FFFFFF" x:Key="GridBackground" />
+	<SolidColorBrush Color="#FFFFFF" x:Key="HighlitedGridText" />
+	<SolidColorBrush Color="#1585d0" x:Key="UiElementForeground" />
+	<SolidColorBrush Color="#13a2e8" x:Key="UiElementForegroundAlt" />
+	<SolidColorBrush Color="#e8b313" x:Key="UiElementForegroundHighlight" />
+	<SolidColorBrush Color="#13a2e8" x:Key="UiElementForegroundHighlightAlt" />
+	<SolidColorBrush Color="#1585d0" x:Key="UiElementBackground" />
+	<SolidColorBrush Color="#1585d0" x:Key="UiElementBackgroundAlt" />
+	<SolidColorBrush Color="#13a2e8" x:Key="UiElementBackgroundHighlight" />
+	<SolidColorBrush Color="#e8b313" x:Key="UiElementBackgroundHighlightAlt" />
+
+</ResourceDictionary>
