@@ -1,6 +1,6 @@
 # MinerWatch System Contract
 
-Status: Draft foundation  
+Status: Normative foundation, clarified by the first core increment (2026-09-28)
 Branch: `feature/minerwatch-foundation`
 
 ## 1. Scope
@@ -52,10 +52,14 @@ The project must prefer mechanisms where the EVE client does not need to activel
 
 ### 2.3 Capture-backend policy
 
-Preferred production paths:
+Production candidates, selected only after benchmark:
 
-1. DWM-based composition/atlas;
-2. Windows.Graphics.Capture per HWND.
+1. Windows.Graphics.Capture per HWND (first direct capture baseline);
+2. DWM-based composition/atlas with an independently proven pixel-readback path.
+
+An off-screen/hidden atlas is not assumed to work. A successful DWM thumbnail registration
+is not evidence that its destination can be captured into CPU pixels. Production selection
+requires the correctness/cost protocol in `CAPTURE_BENCHMARK.md`.
 
 `PrintWindow` may exist only as diagnostic/fallback functionality and must be labelled as such. It is not the default production backend.
 
@@ -88,6 +92,12 @@ The system must maintain a logical `ClientId` for each monitored character/clien
 
 Character/window title matching may be used as one identity signal.
 
+Configured logical IDs survive process restarts; HWND/PID/discovery order are never the ID.
+Multiple candidate windows for one identity produce UNKNOWN. The binding has a runtime
+generation; change it on source replacement, availability, geometry or DPI changes.
+The coordinator must also invalidate evidence on profile/configuration/capture-session changes.
+Late results from an older observation epoch must not update the current state.
+
 ---
 
 ## 5. Profile contract
@@ -99,6 +109,7 @@ A profile must include:
 - schema version;
 - profile ID/name;
 - reference width/height;
+- reference Windows DPI and an explicit calibration state;
 - expected UI scale or UI-scale identifier;
 - ROI definitions;
 - detector assignment per ROI;
@@ -106,6 +117,12 @@ A profile must include:
 - state-policy thresholds.
 
 ROI definitions must support anchor-relative geometry.
+
+Coordinates are physical pixels relative to the client area's top-left. Anchor plus offset
+locates the ROI's top-left; right/bottom anchors use the exclusive client edge. Backends
+must explicitly transform from capture-texture coordinates. No automatic scaling or clipping.
+Windows DPI and EVE UI scale are different; UI scale requires operator confirmation or a
+separately validated visual check. An example profile is not capture-ready until calibrated.
 
 Minimum anchor set:
 
@@ -133,6 +150,7 @@ Each detector result must include:
 - measurement value;
 - confidence;
 - timestamp;
+- source-frame sequence and observation generation;
 - validity;
 - optional diagnostic reason.
 
@@ -169,6 +187,9 @@ Preferred evidence:
 
 The static module icon alone must not be treated as sufficient evidence of active cycling.
 
+Missing activation-colour pixels do not by themselves prove INACTIVE. The correct UI region
+must be positively identified; black, missing, clipped, covered or wrong-tab content is UNKNOWN.
+
 ---
 
 ## 7. State contract
@@ -188,11 +209,20 @@ UNKNOWN must never be downgraded to GREEN.
 
 The state engine must implement temporal confirmation/hysteresis to avoid flapping on single-frame errors.
 
+This confirmation applies to valid operational readings. Quality/freshness failures enter
+UNKNOWN immediately. Confirmation and recovery count distinct advancing source frames,
+not evaluation ticks. Expose pending valid transitions separately from confirmed colour.
+
 ---
 
 ## 8. Freshness contract
 
 Every measurement has an age.
+
+Age is measured from source capture time on a shared monotonic clock, not time of CV/polling.
+Reject future timestamps, time/sequence regressions and excessive skew among required
+measurements. Cached frames retain their sequence and time. A newly delivered compositor
+frame is not proof of new EVE simulation content; source-render liveness needs separate validation.
 
 If required measurements are older than the configured freshness limit, the client becomes UNKNOWN.
 
@@ -288,6 +318,9 @@ For the foundation phase:
 - reuse the shell where useful;
 - do not force an immediate UI rewrite;
 - isolate new core services behind interfaces so a later migration to modern .NET is possible.
+
+The first implementation uses a separate .NET Standard 2.0 core with .NET 10 development
+tools/tests. This does not migrate the WPF application or certify its legacy capture helpers.
 
 The architecture must not depend on legacy static helper classes.
 

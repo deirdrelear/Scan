@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "example-2560x1440-ui100-NOT-CALIBRATED",
+  "calibrated": false,
+  "reference": { "width": 2560, "height": 1440, "uiScale": "100", "dpi": 96 },
+  "rois": [
+    { "id": "hold", "anchor": "BottomRight", "offsetX": -320, "offsetY": -180, "width": 230, "height": 30, "detector": "HoldGauge", "parameters": {} },
+    { "id": "harvester1", "anchor": "BottomCenter", "offsetX": -95, "offsetY": -115, "width": 72, "height": 72, "detector": "Harvester", "parameters": {} },
+    { "id": "harvester2", "anchor": "BottomCenter", "offsetX": -15, "offsetY": -115, "width": 72, "height": 72, "detector": "Harvester", "parameters": {} }
+  ],
+  "policy": {
+    "warningEnter": 0.90, "warningExit": 0.87,
+    "fullEnter": 0.99, "fullExit": 0.97,
+    "minimumConfidence": 0.80,
+    "freshnessMs": 2000, "maximumSkewMs": 1000, "confirmationSamples": 2
+  }
+}

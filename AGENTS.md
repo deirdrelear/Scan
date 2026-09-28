@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This branch is the design foundation for **MinerWatch**, a read-only external observer for a wall of EVE Online clients (target: about 20 Mackinaw mining clients).
+This branch contains the design foundation and first testable core for **MinerWatch**, a read-only external observer for a wall of EVE Online clients (target: about 20 Mackinaw mining clients).
 
 The program must determine, for every client:
 
@@ -17,6 +17,13 @@ Before implementing or changing behavior, read:
 
 - `docs/MINERWATCH_CONTRACT.md`
 - `docs/MINERWATCH_ARCHITECTURE.md`
+- `docs/adr/0001-observer-core.md`
+
+Current implementation: `src/MinerWatch.Core` (.NET Standard 2.0),
+`src/MinerWatch.Tool` and `tests/MinerWatch.Tests` (.NET 10).
+Build `MinerWatch.slnx`; run the executable tests as documented in `README.md`.
+The legacy `EveProj.sln` is a separate application, not a dependency of MinerWatch.
+Do not describe measurement replay tests as real-image CV validation or capture benchmarks.
 
 The contract is normative. If code and the contract disagree, stop and reconcile them before continuing.
 
@@ -128,8 +135,9 @@ Keep hard boundaries between these layers:
 
 3. **CaptureEngine**
    - captures pixels without entering the EVE process;
-   - preferred backend: DWM atlas + capture of MinerWatch's own atlas;
-   - alternative backend: per-window Windows.Graphics.Capture;
+   - first direct capture benchmark: per-window Windows.Graphics.Capture;
+   - experimental candidate: DWM atlas + a proven pixel readback of MinerWatch's own atlas;
+   - no production backend is selected until the benchmark is complete;
    - diagnostic fallback: PrintWindow.
 
 4. **DetectionEngine**
@@ -164,7 +172,10 @@ Baseline policy:
 
 Thresholds are profile/config values, not magic constants in detector code.
 
-The state engine must use hysteresis and temporal confirmation so a single bad frame does not flap state.
+The state engine must use hysteresis and temporal confirmation so one valid but transient
+operational reading does not flap state. Capture/measurement quality failures enter UNKNOWN
+immediately. Recovery needs new frames; reprocessing a cached frame never adds confirmations.
+Never reset a cached frame's capture timestamp on polling. Preserve generation and sequence.
 
 ---
 
@@ -179,6 +190,7 @@ Prefer profile coordinates of the form:
 - width/height;
 - reference resolution;
 - UI scale;
+- client-area physical pixels and reference Windows DPI;
 - detector type;
 - detector parameters.
 
@@ -248,6 +260,10 @@ For the first implementation phase:
 5. only then optimize the production capture backend.
 
 Do not prematurely rewrite the whole WPF shell.
+
+The registry, profile resolver, pixel/detector interfaces and state engine now exist.
+Next: obtain real labelled image fixtures, implement calibrated detectors and benchmark
+capture. Placeholder ROI positions are not measurements of the user's EVE layout.
 
 ---
 

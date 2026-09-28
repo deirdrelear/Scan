@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="src/MinerWatch.Core/MinerWatch.Core.csproj" />
+  <Project Path="src/MinerWatch.Tool/MinerWatch.Tool.csproj" />
+  <Project Path="tests/MinerWatch.Tests/MinerWatch.Tests.csproj" />
+</Solution>

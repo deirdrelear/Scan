@@ -1,0 +1,13 @@
+{"kind":"sample","clientId":"miner-01","generation":1,"nowMs":0,"sequence":1,"capturedMs":0,"hold":0.42,"h1":"Active","h2":"Active","confidence":0.99}
+{"kind":"tick","clientId":"miner-01","generation":1,"nowMs":100}
+{"kind":"sample","clientId":"miner-01","generation":1,"nowMs":500,"sequence":2,"capturedMs":500,"hold":0.43,"h1":"Active","h2":"Active","confidence":0.99}
+{"kind":"sample","clientId":"miner-01","generation":1,"nowMs":1000,"sequence":3,"capturedMs":1000,"hold":0.91,"h1":"Active","h2":"Active","confidence":0.99}
+{"kind":"sample","clientId":"miner-01","generation":1,"nowMs":1500,"sequence":4,"capturedMs":1500,"hold":0.92,"h1":"Active","h2":"Active","confidence":0.99}
+{"kind":"sample","clientId":"miner-02","generation":1,"nowMs":1500,"sequence":1,"capturedMs":1500,"hold":0.50,"h1":"Active","h2":"Active","confidence":0.99}
+{"kind":"sample","clientId":"miner-01","generation":1,"nowMs":2000,"sequence":5,"capturedMs":2000,"hold":1.0,"h1":"Active","h2":"Active","confidence":0.99}
+{"kind":"sample","clientId":"miner-02","generation":1,"nowMs":2000,"sequence":2,"capturedMs":2000,"hold":0.51,"h1":"Active","h2":"Active","confidence":0.99}
+{"kind":"sample","clientId":"miner-01","generation":1,"nowMs":2500,"sequence":6,"capturedMs":2500,"hold":1.0,"h1":"Inactive","h2":"Inactive","confidence":0.99}
+{"kind":"failure","clientId":"miner-01","generation":1,"nowMs":2600,"reason":"SourceWindowClosed"}
+{"kind":"sample","clientId":"miner-01","generation":2,"nowMs":3000,"sequence":1,"capturedMs":3000,"hold":0.10,"h1":"Active","h2":"Active","confidence":0.99}
+{"kind":"sample","clientId":"miner-01","generation":2,"nowMs":3500,"sequence":2,"capturedMs":3500,"hold":0.12,"h1":"Active","h2":"Active","confidence":0.99}
+{"kind":"tick","clientId":"miner-01","generation":2,"nowMs":5500}
