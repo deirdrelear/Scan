@@ -18,12 +18,14 @@ Before implementing or changing behavior, read:
 - `docs/MINERWATCH_CONTRACT.md`
 - `docs/MINERWATCH_ARCHITECTURE.md`
 - `docs/adr/0001-observer-core.md`
+- `docs/REVIEW_FOLLOWUPS.md`
 
 Current implementation: `src/MinerWatch.Core` (.NET Standard 2.0),
 `src/MinerWatch.Tool` and `tests/MinerWatch.Tests` (.NET 10).
 Build `MinerWatch.slnx`; run the executable tests as documented in `README.md`.
 The legacy `EveProj.sln` is a separate application, not a dependency of MinerWatch.
 Do not describe measurement replay tests as real-image CV validation or capture benchmarks.
+Process all open items in `docs/REVIEW_FOLLOWUPS.md` before starting substantial dashboard work.
 
 The contract is normative. If code and the contract disagree, stop and reconcile them before continuing.
 
